@@ -13,12 +13,14 @@ public class EmotecraftRecordingInit implements ClientModInitializer {
 		FabricLoader fabricInstance = FabricLoader.getInstance();
 		if (fabricInstance.isModLoaded(Constants.FLASHBACK_ID)) {
 			ClientNetworkEvents.PACKET_SEND.register(builder -> {
+				EmotePacketVersionFix.ensureVersions(builder);
 				EmotecraftFlashbackAddonClient.recordPacket(builder);
 			});
 			log.info("Emotecraft addon for Flashback loaded!");
 		}
 		if (fabricInstance.isModLoaded(Constants.REPLAY_MOD_ID)) {
 			ClientNetworkEvents.PACKET_SEND.register(builder -> {
+				EmotePacketVersionFix.ensureVersions(builder);
 				EmotecraftReplayAddonClient.recordPacket(builder);
 			});
 			log.info("Emotecraft addon for Replay Mod loaded!");
